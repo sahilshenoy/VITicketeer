@@ -2,7 +2,7 @@
 
 <div align="center">
   <br />
-    <img src="/Users/sahil/ResumeProjects/VITicketeer/public/assets/images/readmeBanner.png" alt="Project Banner">
+    <img src="public/assets/images/readmeBanner.png" alt="Project Banner">
   <br />
 
 
@@ -140,16 +140,16 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
   <table>
     <tr>
       <td align="center">
-        <img src="https://via.placeholder.com/150" alt="Sahil Shenoy" style="border-radius: 50%;">
+        <img src="[Sahil Photo](https://imgur.com/JO0rUIX)" alt="Sahil Shenoy" style="border-radius: 50%;">
         <br>
         <strong>Sahil Shenoy</strong>
-        <p>Software Engineer with expertise in High Performance Computing, Quantum Computing, and Artificial Neural Networks. Passionate about developing scalable solutions and exploring new technologies.</p>
+        <p>Software Engineer with expertise in Cloud Computing, High Performance Computing, and Quantum Computing. Passionate about developing scalable solutions and exploring new technologies.</p>
       </td>
       <td align="center">
-        <img src="https://via.placeholder.com/150" alt="Dhwani Budhiraja" style="border-radius: 50%;">
+        <img src="[Dhwani Photo](https://imgur.com/XL45jXn)" alt="Dhwani Budhiraja" style="border-radius: 50%;">
         <br>
         <strong>Dhwani Budhiraja</strong>
-        <p>Full Stack Developer with a strong background in web development and a keen interest in creating user-friendly applications. Skilled in various modern web technologies and always eager to learn more.</p>
+        <p>Full Stack Developer with a strong background in AI & web development and a keen interest in creating user-friendly applications. Skilled in various modern web technologies and always eager to learn more.</p>
       </td>
     </tr>
   </table>
