@@ -140,13 +140,13 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
   <table>
     <tr>
       <td align="center">
-        <img src="[Sahil Photo](https://imgur.com/JO0rUIX)" alt="Sahil Shenoy" style="border-radius: 50%;">
+        <img src="https://imgur.com/JO0rUIX.jpg" alt="Sahil Shenoy" style="border-radius: 50%; width: 150px; height: 150px;">
         <br>
         <strong>Sahil Shenoy</strong>
         <p>Software Engineer with expertise in Cloud Computing, High Performance Computing, and Quantum Computing. Passionate about developing scalable solutions and exploring new technologies.</p>
       </td>
       <td align="center">
-        <img src="[Dhwani Photo](https://imgur.com/XL45jXn)" alt="Dhwani Budhiraja" style="border-radius: 50%;">
+        <img src="https://imgur.com/XL45jXn.jpg" alt="Dhwani Budhiraja" style="border-radius: 50%; width: 150px; height: 150px;">
         <br>
         <strong>Dhwani Budhiraja</strong>
         <p>Full Stack Developer with a strong background in AI & web development and a keen interest in creating user-friendly applications. Skilled in various modern web technologies and always eager to learn more.</p>
@@ -154,3 +154,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
     </tr>
   </table>
 </div>
+
