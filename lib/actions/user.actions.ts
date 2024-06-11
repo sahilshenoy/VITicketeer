@@ -47,6 +47,20 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
   }
 }
 
+export async function disableUser(clerkId: string) {
+  try {
+    await connectToDatabase();
+    const updatedUser = await User.findOneAndUpdate(
+      { clerkId },
+      { isActive: false },
+      { new: true }
+    );
+    return updatedUser ? JSON.parse(JSON.stringify(updatedUser)) : null;
+  } catch (error) {
+    handleError(error);
+  }
+}
+
 export async function deleteUser(clerkId: string) {
   try {
     await connectToDatabase()
