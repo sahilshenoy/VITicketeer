@@ -30,6 +30,8 @@ export async function POST(req: Request) {
   const payload = await req.json();
   const body = JSON.stringify(payload);
 
+  console.log('Webhook payload:', payload);
+
   const wh = new Webhook(WEBHOOK_SECRET);
 
   let evt: WebhookEvent;
