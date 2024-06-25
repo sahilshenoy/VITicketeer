@@ -18,6 +18,7 @@ export async function createUser(user: CreateUserParams) {
     console.log('User created:', newUser)
     return JSON.parse(JSON.stringify(newUser))
   } catch (error) {
+    console.error('Error creating user:', error)
     handleError(error)
   }
 }
@@ -33,6 +34,7 @@ export async function getUserById(userId: string) {
     console.log('User found:', user)
     return JSON.parse(JSON.stringify(user))
   } catch (error) {
+    console.error('Error getting user by ID:', error)
     handleError(error)
   }
 }
@@ -48,6 +50,7 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
     console.log('User updated:', updatedUser)
     return JSON.parse(JSON.stringify(updatedUser))
   } catch (error) {
+    console.error('Error updating user:', error)
     handleError(error)
   }
 }
@@ -66,6 +69,7 @@ export async function disableUser(clerkId: string) {
     console.log('User disabled:', updatedUser)
     return JSON.parse(JSON.stringify(updatedUser))
   } catch (error) {
+    console.error('Error disabling user:', error)
     handleError(error)
   }
 }
@@ -75,12 +79,10 @@ export async function deleteUser(clerkId: string) {
     await connectToDatabase()
     console.log('Database connected for deleting user')
 
-    // Find user to delete
     const userToDelete = await User.findOne({ clerkId })
     if (!userToDelete) throw new Error('User not found')
     console.log('User to delete found:', userToDelete)
 
-    // Unlink relationships
     await Promise.all([
       Event.updateMany(
         { _id: { $in: userToDelete.events } },
@@ -90,13 +92,13 @@ export async function deleteUser(clerkId: string) {
     ])
     console.log('Relationships unlinked for user:', userToDelete._id)
 
-    // Delete user
     const deletedUser = await User.findByIdAndDelete(userToDelete._id)
     revalidatePath('/')
     console.log('User deleted:', deletedUser)
 
     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null
   } catch (error) {
+    console.error('Error deleting user:', error)
     handleError(error)
   }
 }
