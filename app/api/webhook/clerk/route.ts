@@ -47,7 +47,7 @@ export async function POST(req: Request) {
     return new Response("Error occurred", { status: 400 });
   }
 
-  const { id } = evt.data;
+  const id = evt.data.id as string;
   const eventType = evt.type;
 
   try {
