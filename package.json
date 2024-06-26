@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "testInsertion": "ts-node testInsertion.ts"
+    "testInsertion": "ts-node -r tsconfig-paths/register testInsertion.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.30.0",
@@ -39,6 +39,7 @@
     "tailwind-merge": "^2.1.0",
     "tailwindcss-animate": "^1.0.7",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "uploadthing": "^6.0.4",
     "zod": "^3.22.4"
   },

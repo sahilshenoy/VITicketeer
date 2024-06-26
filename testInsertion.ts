@@ -1,29 +1,7 @@
-// import { connectToDatabase } from '@/lib/database'
-// import User from '@/lib/database/models/user.model'
-// import mongoose from 'mongoose'
-
-require('dotenv').config();
-const mongoose = require('mongoose');
-const User = require('@/lib/database/models/user.model'); // Adjust the path as necessary
-
-const MONGODB_URI = process.env.MONGODB_URI;
-
-const connectToDatabase = async () => {
-  if (!MONGODB_URI) {
-    throw new Error('MONGODB_URI is missing');
-  }
-
-  try {
-    await mongoose.connect(MONGODB_URI, {
-      dbName: 'VITicketeer',
-      bufferCommands: false,
-    });
-    console.log('Database connected');
-  } catch (err) {
-    console.error('Database connection error:', err);
-    throw err;
-  }
-};
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import { connectToDatabase } from './lib/database';
+import User from './lib/database/models/user.model';
 
 const testInsertion = async () => {
   try {
@@ -50,4 +28,3 @@ const testInsertion = async () => {
 };
 
 testInsertion();
-
