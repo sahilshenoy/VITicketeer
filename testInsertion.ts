@@ -1,9 +1,9 @@
-import 'dotenv/config';
+import './config'; // Ensure dotenv is loaded first
 import mongoose from 'mongoose';
 import { connectToDatabase } from './lib/database';
 import User from './lib/database/models/user.model';
 
-console.log('MONGODB_URI:', process.env.MONGODB_URI); // Add this line
+console.log('MONGODB_URI:', process.env.MONGODB_URI); // Add this line to verify
 
 const testInsertion = async () => {
   try {
