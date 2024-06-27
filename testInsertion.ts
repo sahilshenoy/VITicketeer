@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import { connectToDatabase } from './lib/database';
 import User from './lib/database/models/user.model';
 
+console.log('MONGODB_URI:', process.env.MONGODB_URI); // Add this line
+
 const testInsertion = async () => {
   try {
     await connectToDatabase();
