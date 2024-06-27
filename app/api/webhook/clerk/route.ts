@@ -37,6 +37,7 @@ export async function POST(req: Request) {
       "svix-signature": svix_signature,
     }) as WebhookEvent;
     console.log("Webhook verified:", evt.type);
+    console.log("Received event:", evt);  // Log the received event
   } catch (err) {
     console.error("Error verifying webhook:", err);
     return new Response("Error occurred", { status: 400 });
@@ -60,16 +61,10 @@ export async function POST(req: Request) {
         return new Response("Email address is undefined", { status: 400 });
       }
 
-      // if (!email.endsWith("@vitbhopal.ac.in")) {
-      //   await disableUser(id);
-      //   console.warn("Access denied for email:", email);
-      //   return new Response("Access Denied", { status: 403 });
-      // }
-
       const user = {
         clerkId: id,
         email: email,
-        username: username || '',
+        username: username || 'default_username', // Provide a default value for username
         firstName: first_name || '',
         lastName: last_name || '',
         photo: image_url || '',
@@ -97,7 +92,7 @@ export async function POST(req: Request) {
       const user = {
         firstName: first_name || '',
         lastName: last_name || '',
-        username: username || '',
+        username: username || 'default_username', // Provide a default value for username
         photo: image_url || '',
       };
 
