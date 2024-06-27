@@ -38,6 +38,7 @@ export const disableUser = async (clerkId: string) => {
   }
 };
 
+
 export async function getUserById(userId: string) {
   try {
     await connectToDatabase()

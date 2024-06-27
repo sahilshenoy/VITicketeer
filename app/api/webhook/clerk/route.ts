@@ -1,16 +1,15 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
-import { createUser, deleteUser, updateUser, disableUser } from "@/lib/actions/user.actions";
-import { clerkClient } from "@clerk/nextjs";
-import { NextResponse } from "next/server";
+import { disableUser } from "@/lib/actions/user.actions";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+const handler = async (req: NextRequest, res: NextResponse) => {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
     console.error("WEBHOOK_SECRET is missing");
-    throw new Error("Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local");
+    throw new Error("Please add WEBHOOK_SECRET to your environment variables");
   }
 
   const headerPayload = headers();
@@ -48,7 +47,7 @@ export async function POST(req: Request) {
 
   try {
     if (eventType === "user.created") {
-      const { email_addresses, image_url, first_name, last_name, username } = evt.data;
+      const { email_addresses } = evt.data;
 
       if (!id || !email_addresses || email_addresses.length === 0) {
         console.error("Missing necessary user data");
@@ -64,68 +63,16 @@ export async function POST(req: Request) {
       if (!email.endsWith("@vitbhopal.ac.in")) {
         await disableUser(id);
         console.warn("Access denied for email:", email);
-        return new Response("Access Denied", { status: 403 });
+        return new Response("Access Denied: Only VIT Bhopal email addresses are allowed.", { status: 403 });
       }
-
-      const user = {
-        clerkId: id,
-        email: email,
-        username: username || 'default_username', // Provide a default value for username
-        firstName: first_name || '',
-        lastName: last_name || '',
-        photo: image_url || '',
-      };
-
-      console.log("Creating user:", user);
-
-      const newUser = await createUser(user);
-      if (newUser) {
-        await clerkClient.users.updateUserMetadata(id, {
-          publicMetadata: {
-            userId: newUser._id,
-          },
-        });
-      }
-
-      console.log("User created successfully:", newUser);
-
-      return NextResponse.json({ message: "OK", user: newUser });
     }
 
-    if (eventType === "user.updated") {
-      const { image_url, first_name, last_name, username } = evt.data;
-
-      const user = {
-        firstName: first_name || '',
-        lastName: last_name || '',
-        username: username || 'default_username', // Provide a default value for username
-        photo: image_url || '',
-      };
-
-      console.log("Updating user:", id, user);
-
-      const updatedUser = await updateUser(id, user);
-
-      console.log("User updated successfully:", updatedUser);
-
-      return NextResponse.json({ message: "OK", user: updatedUser });
-    }
-
-    if (eventType === "user.deleted") {
-      console.log("Deleting user:", id);
-
-      const deletedUser = await deleteUser(id);
-
-      console.log("User deleted successfully:", deletedUser);
-
-      return NextResponse.json({ message: "OK", user: deletedUser });
-    }
-
-    console.log("Unhandled event type:", eventType);
-
-    return new Response("", { status: 200 });
+    // Handle other events if necessary
+    return new Response("OK", { status: 200 });
   } catch (error) {
     console.error("Error handling event:", error);
     return new Response("Error occurred", { status: 500 });
   }
-}
+};
+
+export default handler;
