@@ -21,6 +21,22 @@ export async function createUser(user: CreateUserParams) {
     handleError(error)
   }
 }
+export const disableUser = async (clerkId: string) => {
+  try {
+    await connectToDatabase();
+    const updatedUser = await User.findOneAndUpdate(
+      { clerkId },
+      { isActive: false },
+      { new: true }
+    );
+    if (!updatedUser) throw new Error('User disable failed');
+    console.log('User disabled:', updatedUser);
+    return JSON.parse(JSON.stringify(updatedUser));
+  } catch (error) {
+    console.error('Error disabling user:', error);
+    throw error;
+  }
+};
 
 export async function getUserById(userId: string) {
   try {

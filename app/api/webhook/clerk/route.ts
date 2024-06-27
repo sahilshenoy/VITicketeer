@@ -1,7 +1,7 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
-import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
+import { createUser, deleteUser, updateUser, disableUser } from "@/lib/actions/user.actions";
 import { clerkClient } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
@@ -59,6 +59,12 @@ export async function POST(req: Request) {
       if (!email) {
         console.error("Email address is undefined");
         return new Response("Email address is undefined", { status: 400 });
+      }
+
+      if (!email.endsWith("@vitbhopal.ac.in")) {
+        await disableUser(id);
+        console.warn("Access denied for email:", email);
+        return new Response("Access Denied", { status: 403 });
       }
 
       const user = {
