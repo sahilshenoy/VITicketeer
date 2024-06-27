@@ -1,7 +1,7 @@
-import 'dotenv/config';
-import mongoose from 'mongoose';
-import { connectToDatabase } from './lib/database';
-import User from './lib/database/models/user.model';
+require('dotenv').config();
+const mongoose = require('mongoose');
+const connectToDatabase = require('./lib/database').connectToDatabase;
+const User = require('./lib/database/models/user.model');
 
 const testInsertion = async () => {
   try {
