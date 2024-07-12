@@ -4,6 +4,18 @@ import { twMerge } from 'tailwind-merge'
 import qs from 'query-string'
 
 import { UrlQueryParams, RemoveUrlQueryParams } from '@/types'
+import { NextApiRequest, NextApiResponse } from "next";
+
+export function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: Function) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+}
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
