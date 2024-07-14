@@ -1,18 +1,21 @@
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "../ui/button"
-import NavItems from "./NavItems"
-import MobileNav from "./MobileNav"
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import NavItems from "./NavItems";
+import MobileNav from "./MobileNav";
 
 const Header = () => {
   return (
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-41">
-          <Image 
-            src="/assets/images/VITicketeer.png" width={300} height={100}
-            alt="VITicketeer logo" style={{ width: '220px', height: '65px' }} 
+          <Image
+            src="/assets/images/VITicketeerLogoFinal.png"
+            width={300}
+            height={100}
+            alt="VITicketeer logo"
+            style={{ width: "220px", height: "65px" }}
           />
         </Link>
 
@@ -29,15 +32,13 @@ const Header = () => {
           </SignedIn>
           <SignedOut>
             <Button asChild className="rounded-full" size="lg">
-              <Link href="/sign-in">
-                Login
-              </Link>
+              <Link href="/sign-in">Login</Link>
             </Button>
           </SignedOut>
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
