@@ -12,10 +12,9 @@ const Header = () => {
         <Link href="/" className="w-41">
           <Image
             src="/assets/images/VITicketeerLogoFinal.png"
-            width={300}
-            height={100}
+            width={120}
+            height={120}
             alt="VITicketeer logo"
-            style={{ width: "220px", height: "65px" }}
           />
         </Link>
 

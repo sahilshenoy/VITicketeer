@@ -9,8 +9,8 @@ const Footer = () => {
           <Image
             src="/assets/images/VITicketeerLogoFinal.png"
             alt="logo"
-            width={150}
-            height={40}
+            width={60}
+            height={60}
           />
         </Link>
 

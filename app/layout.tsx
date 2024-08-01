@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: 'VITicketeer',
   description: 'VITicketeer is a platform for VIT Bhopal students to buy tickets for any of their club events. Streamlining the process for both students and the clubs.',
   icons: {
-    icon: '/assets/images/VITicketeer.webp'
+    icon: '/assets/images/VITicketeerLogoFinal.png'
   }
 }
 
